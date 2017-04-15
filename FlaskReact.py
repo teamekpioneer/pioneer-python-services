@@ -14,8 +14,8 @@ def index():
 @app.route('/all')
 def getAll():
     # connection string
-    client = MongoClient('localhost', 27017)
-    db = client.test
+    client = MongoClient('mongodb://heroku_3hnv0b0z:umoubua1182tt4utds7gndqbc5@ds161630.mlab.com:61630/heroku_3hnv0b0z')
+    db = client.heroku_3hnv0b0z
 
     # find or query data
     cursor = db.restaurants.find()
