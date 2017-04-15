@@ -1,0 +1,10 @@
+{
+  "_id":"18692146",
+  "serviceName": "rebookFlightSegments",
+  "userName": "S752351",
+  "startTime": "1492009679434",
+  "endTime": "1492009680708",
+  "auditId": "18692146",
+  "parentAuditId": "18692146",
+  "exception": "<com.emirates.ssui.common.exceptions.SSUIAppException><detailMessage>WARNING TST 016     ENTER RE-ENTER FORM OF PAYMENT </detailMessage><stackTrace><trace>com.emirates.ssui.sales.booking.BookingData"
+}

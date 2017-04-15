@@ -1,0 +1,11 @@
+{
+  "_id":"1213211",
+  "serviceCode": "releaseSession",
+  "cleintTransId": "S998249-41-120417190802",
+  "startTime": "1492009683002",
+  "endTime": "1492009683066",
+  "sessionId": "fa86bbc4-7054-4a4c-ab85-55ce6fdccd4c-WS1",
+  "parentAuditId": "18692146",
+  "requestXML": "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\"><SOAP-ENV:Header><ns2:securityHeader xmlns:ns2=\"http://www.emirates.com/pss/integration/xmlschemas/security/2013/03\" xmlns",
+  "responseXML": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\"><SOAP-ENV:Body><ns0:ReleaseSessionResponse xmlns:ns0=\"http://www.emirates.com/pss/in"
+}
