@@ -1,6 +1,11 @@
 import json
 import xmltodict
+from pymongo import MongoClient
 
+
+# Connection string and database
+client = MongoClient('localhost', 27017)
+db = client.test
 
 def parse_branded_fares_shopping(xml_file, json_file, xml_attribs=True):
 
@@ -63,14 +68,21 @@ def main():
         print('... Parsing brandedfaresshopping-rq ...')
         parse_branded_fares_shopping("brandedfaresshopping-rq.xml", "brandedfaresshopping-rq.json")
         print('Completed Parsing')
+
+        print('... Inserting to brandedfaresshopping collection ...')
+        with open('brandedfaresshopping-rq.json') as json_data:
+            data = json.load(json_data)
+            db.brandedfaresshopping.insert(data);
+        print('Completed inserting to brandedfaresshopping collection ')
+
     except IOError as e:
         print(e)
     except ImportError as ie:
         print(ie)
     except NameError as ne:
         print(ne)
-    except:
-        print('Unexpected Error')
+    except Exception as ex:
+        print('Unexpected Error' + ex)
 
 if __name__ == "__main__":
     main()
