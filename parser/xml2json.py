@@ -1,4 +1,3 @@
-import json
 import xmltodict
 from pymongo import MongoClient
 
@@ -7,12 +6,14 @@ from pymongo import MongoClient
 client = MongoClient('localhost', 27017)
 db = client.test
 
-def parse_branded_fares_shopping(xml_file, json_file, xml_attribs=True):
+
+def parse_branded_fares_shopping(xml_file):
+    """Parse branded fares shopping xml file xml_file and return a dictionary result_dict"""
 
     result_dict = {}
 
     with open(xml_file, "rb") as f:
-        document = xmltodict.parse(f, xml_attribs=xml_attribs)
+        document = xmltodict.parse(f, xml_attribs=True)
 
     soap = document['SOAP-ENV:Envelope']
     client_transaction_id = soap['SOAP-ENV:Header']['ns2:securityHeader']['ns2:serviceSecurityHeader']['ns2:clientTransactionId']
@@ -58,21 +59,18 @@ def parse_branded_fares_shopping(xml_file, json_file, xml_attribs=True):
 
     result_dict['isRedemption'] = is_redemption
 
-    with open(json_file, 'w') as outfile:
-        json.dump(result_dict, outfile, sort_keys=True, indent=4, ensure_ascii=False)
+    return result_dict
 
 
 def main():
 
     try:
         print('... Parsing brandedfaresshopping-rq ...')
-        parse_branded_fares_shopping("brandedfaresshopping-rq.xml", "brandedfaresshopping-rq.json")
+        result_dict = parse_branded_fares_shopping("brandedfaresshopping-rq.xml")
         print('Completed Parsing')
 
         print('... Inserting to brandedfaresshopping collection ...')
-        with open('brandedfaresshopping-rq.json') as json_data:
-            data = json.load(json_data)
-            db.brandedfaresshopping.insert(data);
+        db.brandedfaresshopping.insert(result_dict)
         print('Completed inserting to brandedfaresshopping collection ')
 
     except IOError as e:
